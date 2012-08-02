@@ -20,8 +20,27 @@
 
         </esri:Map>
         <Canvas>
-        	<Border BorderBrush="Black" BorderThickness="1" Height="100" Width="100"/>
-        	
+            <Border BorderThickness="1"
+                    BorderBrush="Silver"
+                    Height="Auto"
+                    HorizontalAlignment="Left"
+                    Margin="1000,50,0,0"
+                    Name="sideBar"
+                    VerticalAlignment="Top"
+                    Width="200"
+                    Background="#E1EBFB"
+                    CornerRadius="25">
+            	<Border.Effect>
+            		<DropShadowEffect/>
+            	</Border.Effect>
+                <StackPanel>
+                    <Rectangle Fill="White"
+                               Height="15"
+                               Margin="0,25,0,0"
+                               VerticalAlignment="Top"/>
+                </StackPanel>
+            </Border>
+
         </Canvas>
         
     </Grid>
