@@ -1,5 +1,5 @@
-﻿<xapCache source="C:\Inetpub\wwwroot\hybrid\Bin\Release\hybrid.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="7/25/2012 8:12:02 AM">
-  <file source="C:\Inetpub\wwwroot\hybrid\obj\Release\hybrid.dll" archivePath="hybrid.dll" lastWriteTime="7/25/2012 8:11:55 AM" />
+﻿<xapCache source="C:\Inetpub\wwwroot\hybrid\Bin\Release\hybrid.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="8/2/2012 2:26:15 PM">
+  <file source="C:\Inetpub\wwwroot\hybrid\obj\Release\hybrid.dll" archivePath="hybrid.dll" lastWriteTime="8/2/2012 2:26:11 PM" />
   <file source="C:\Program Files\ESRI SDKs\Silverlight5\v3.0\ESRI.ArcGIS.Client.Behaviors.dll" archivePath="ESRI.ArcGIS.Client.Behaviors.dll" lastWriteTime="6/13/2012 7:14:56 AM" />
   <file source="C:\Program Files\ESRI SDKs\Silverlight5\v3.0\ESRI.ArcGIS.Client.dll" archivePath="ESRI.ArcGIS.Client.dll" lastWriteTime="6/13/2012 7:14:56 AM" />
   <file source="C:\Program Files\ESRI SDKs\Silverlight5\v3.0\ESRI.ArcGIS.Client.Printing.dll" archivePath="ESRI.ArcGIS.Client.Printing.dll" lastWriteTime="6/13/2012 7:14:56 AM" />
@@ -19,5 +19,5 @@
   <file source="C:\Program Files\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.ServiceModel.Syndication.dll" archivePath="System.ServiceModel.Syndication.dll" lastWriteTime="11/18/2011 4:40:20 PM" />
   <file source="C:\Program Files\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.Data.Input.dll" archivePath="System.Windows.Controls.Data.Input.dll" lastWriteTime="11/18/2011 4:40:20 PM" />
   <file source="C:\Program Files\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Xml.Serialization.dll" archivePath="System.Xml.Serialization.dll" lastWriteTime="11/18/2011 4:40:20 PM" />
-  <file source="C:\Inetpub\wwwroot\hybrid\Bin\Release\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="7/25/2012 8:12:01 AM" />
+  <file source="C:\Inetpub\wwwroot\hybrid\Bin\Release\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="8/2/2012 2:26:14 PM" />
 </xapCache>
