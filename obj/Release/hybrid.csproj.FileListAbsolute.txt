@@ -376,3 +376,9 @@ C:\Inetpub\wwwroot\hybrid\obj\Release\hybrid.g.resources
 C:\Inetpub\wwwroot\hybrid\obj\Release\hybrid.dll
 C:\Inetpub\wwwroot\hybrid\obj\Release\hybrid.pdb
 C:\Inetpub\wwwroot\hybrid\obj\Release\XapCacheFile.xml
+C:\Inetpub\wwwroot\hybrid\Bin\Release\System.Windows.Controls.Toolkit.dll
+C:\Inetpub\wwwroot\hybrid\Bin\Release\System.Windows.Controls.Toolkit.Internals.dll
+C:\Inetpub\wwwroot\hybrid\Bin\Release\System.Windows.Controls.Toolkit.pdb
+C:\Inetpub\wwwroot\hybrid\Bin\Release\System.Windows.Controls.Toolkit.xml
+C:\Inetpub\wwwroot\hybrid\Bin\Release\Microsoft.Expression.Interactions.dll
+C:\Inetpub\wwwroot\hybrid\Bin\Release\Microsoft.Expression.Interactions.xml

@@ -6,10 +6,12 @@
     <AssemblyPart x:Name="ESRI.ArcGIS.Client.Printing" Source="ESRI.ArcGIS.Client.Printing.dll" />
     <AssemblyPart x:Name="ESRI.ArcGIS.Client.Toolkit.DataSources" Source="ESRI.ArcGIS.Client.Toolkit.DataSources.dll" />
     <AssemblyPart x:Name="ESRI.ArcGIS.Client.Toolkit" Source="ESRI.ArcGIS.Client.Toolkit.dll" />
+    <AssemblyPart x:Name="Microsoft.Expression.Interactions" Source="Microsoft.Expression.Interactions.dll" />
     <AssemblyPart x:Name="System.ComponentModel.DataAnnotations" Source="System.ComponentModel.DataAnnotations.dll" />
     <AssemblyPart x:Name="System.ServiceModel.DomainServices.Client" Source="System.ServiceModel.DomainServices.Client.dll" />
     <AssemblyPart x:Name="System.ServiceModel.DomainServices.Client.Web" Source="System.ServiceModel.DomainServices.Client.Web.dll" />
     <AssemblyPart x:Name="System.ServiceModel.Web.Extensions" Source="System.ServiceModel.Web.Extensions.dll" />
+    <AssemblyPart x:Name="System.Windows.Controls.Toolkit" Source="System.Windows.Controls.Toolkit.dll" />
     <AssemblyPart x:Name="System.Windows.Interactivity" Source="System.Windows.Interactivity.dll" />
     <AssemblyPart x:Name="System.Json" Source="System.Json.dll" />
     <AssemblyPart x:Name="ESRI.ArcGIS.Client.Bing" Source="ESRI.ArcGIS.Client.Bing.dll" />
@@ -18,6 +20,7 @@
     <AssemblyPart x:Name="System.Windows.Data" Source="System.Windows.Data.dll" />
     <AssemblyPart x:Name="System.Xml.Linq" Source="System.Xml.Linq.dll" />
     <AssemblyPart x:Name="System.ServiceModel.Syndication" Source="System.ServiceModel.Syndication.dll" />
+    <AssemblyPart x:Name="System.Windows.Controls.Toolkit.Internals" Source="System.Windows.Controls.Toolkit.Internals.dll" />
     <AssemblyPart x:Name="System.Windows.Controls.Data.Input" Source="System.Windows.Controls.Data.Input.dll" />
     <AssemblyPart x:Name="System.Xml.Serialization" Source="System.Xml.Serialization.dll" />
   </Deployment.Parts>

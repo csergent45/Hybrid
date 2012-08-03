@@ -1,8 +1,9 @@
-﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:esri="http://schemas.esri.com/arcgis/client/2009" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
              x:Class="hybrid.MainPage"
              d:DesignHeight="300"
              d:DesignWidth="400"
@@ -11,33 +12,86 @@
     <Grid x:Name="LayoutRoot" Background="White">
         <esri:Map x:Name="myMap" Extent="778733.96207758,1133387.86320644,849794.792685476,1193607.08672764" IsLogoVisible="False">
             <esri:ArcGISDynamicMapServiceLayer ID="rasterDataset"
-                                               Url="http://unibeast/ArcGIS/rest/services/RasterDataset/MapServer" ImageFormat="JPG">
-            </esri:ArcGISDynamicMapServiceLayer>
+                                               Url="http://unibeast/ArcGIS/rest/services/RasterDataset/MapServer" ImageFormat="JPG"/>
             <esri:ArcGISDynamicMapServiceLayer ID="internetVector"
-                                               Url="http://unibeast/ArcGIS/rest/services/InternetVector/MapServer">
-
-            </esri:ArcGISDynamicMapServiceLayer>
+                                               Url="http://unibeast/ArcGIS/rest/services/InternetVector/MapServer"/>
 
         </esri:Map>
         <Canvas>
+            
             <Border BorderThickness="1"
                     BorderBrush="Silver"
                     Height="Auto"
                     HorizontalAlignment="Left"
                     Margin="1000,50,0,0"
-                    Name="sideBar"
+                    x:Name="sideBar"
                     VerticalAlignment="Top"
                     Width="200"
                     Background="#E1EBFB"
-                    CornerRadius="25">
+                    CornerRadius="25"
+                    >
             	<Border.Effect>
             		<DropShadowEffect/>
             	</Border.Effect>
+                <!-- Programmatically do this http://www.dotnetspider.com/tutorials/Silverlight-Tutorial-324.aspx -->
+            	<i:Interaction.Behaviors>
+            		<ei:MouseDragElementBehavior ConstrainToParentBounds="True"/>
+            	</i:Interaction.Behaviors>
                 <StackPanel>
                     <Rectangle Fill="White"
                                Height="15"
                                Margin="0,25,0,0"
                                VerticalAlignment="Top"/>
+                    <toolkit:Expander Height="Auto"
+                                      x:Name="expanderMain"
+                                      Header="Tools"
+                                      Width="200"
+                                      Foreground="#FF243C5F"
+                                      FontWeight="Bold"
+                                      BorderBrush="#FFE1E4EC">
+                        <StackPanel Orientation="Vertical">
+                            <toolkit:Expander Height="Auto"
+                                              Width="180"
+                                              Header="Navigation">
+                                <StackPanel Orientation="Vertical" x:Name="navTools">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Background="#FF2D84CE" Height="60"
+                                                Content="Zoom In" />
+                                        <Button Background="#FF2D84CE" Height="60"
+                                                Content="Zoom Out" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Background="#FF2D84CE" Height="60"
+                                                Content="Prev Extent" />
+                                        <Button Background="#FF2D84CE" Height="60"
+                                                Content="Next Extent" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Background="#FF2D84CE" Height="60"
+                                                Content="Full Extent" />
+                                        <Button Background="#FF2D84CE" Height="60"
+                                                Content="Pan" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </toolkit:Expander>
+                            <toolkit:Expander Height="Auto"
+                                              Width="180"
+                                              Header="Map Tools">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Background="#FF2D84CE" Height="60"
+                                        Content="Identify" />
+                                    <Button Background="#FF2D84CE" Height="60"
+                                            Content="Measure" />
+                                </StackPanel>
+                                
+                            </toolkit:Expander>
+                            
+                        </StackPanel>
+                    </toolkit:Expander>
+                    <Rectangle Fill="White"
+                               Height="15"
+                               Margin="0,0,0,25"
+                               VerticalAlignment="Bottom"/>
                 </StackPanel>
             </Border>
 
