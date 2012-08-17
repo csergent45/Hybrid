@@ -107,6 +107,35 @@
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\i_apply.png" />
+    <Resource Include="Images\i_clear.png" />
+    <Resource Include="Images\i_draw.png" />
+    <Resource Include="Images\i_draw_point.png" />
+    <Resource Include="Images\i_draw_poly.png" />
+    <Resource Include="Images\i_flag.png" />
+    <Resource Include="Images\i_help.png" />
+    <Resource Include="Images\i_home.png" />
+    <Resource Include="Images\i_identify.png" />
+    <Resource Include="Images\i_locate.png" />
+    <Resource Include="Images\i_measure.png" />
+    <Resource Include="Images\i_overview.png" />
+    <Resource Include="Images\i_pan.png" />
+    <Resource Include="Images\i_policecar.png" />
+    <Resource Include="Images\i_policeman.png" />
+    <Resource Include="Images\i_policestation.png" />
+    <Resource Include="Images\i_print.png" />
+    <Resource Include="Images\i_search.png" />
+    <Resource Include="Images\i_searchclear.png" />
+    <Resource Include="Images\i_stop.png" />
+    <Resource Include="Images\i_zoomfull.png" />
+    <Resource Include="Images\i_zoomin.png" />
+    <Resource Include="Images\i_zoomnext.png" />
+    <Resource Include="Images\i_zoomout.png" />
+    <Resource Include="Images\i_zoomprevious.png" />
+    <Resource Include="Images\w_down.png" />
+    <Resource Include="Images\w_left.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

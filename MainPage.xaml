@@ -48,29 +48,65 @@
                                       Width="200"
                                       Foreground="#FF243C5F"
                                       FontWeight="Bold"
-                                      BorderBrush="#FFE1E4EC">
+                                      BorderBrush="#FFE1E4EC" IsExpanded="True">
                         <StackPanel Orientation="Vertical">
                             <toolkit:Expander Height="Auto"
                                               Width="180"
-                                              Header="Navigation">
+                                              Header="Navigation" IsExpanded="True">
                                 <StackPanel Orientation="Vertical" x:Name="navTools">
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Background="#FF2D84CE" Height="60"
-                                                Content="Zoom In" />
-                                        <Button Background="#FF2D84CE" Height="60"
-                                                Content="Zoom Out" />
+                                        <Button Background="#FF2D84CE" Height="35" Width="88">
+                                            <Button.Content>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Height="18" Name="image1" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomin.png" />
+                                                    <TextBlock Height="15" Name="textBlock1" Text="  Zoom In" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+                                                </StackPanel>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Background="#FF2D84CE" Height="35" Width="88">
+                                            <Button.Content>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Height="18" Name="imgZoomOut" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomout.png" />
+                                                    <TextBlock Height="15" Name="txtBlkZoomOut" Text="  Zoom Out" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+                                                </StackPanel>
+                                            </Button.Content>
+                                        </Button>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Background="#FF2D84CE" Height="60"
-                                                Content="Prev Extent" />
-                                        <Button Background="#FF2D84CE" Height="60"
-                                                Content="Next Extent" />
+                                        <Button Background="#FF2D84CE" Height="35" Width="88">
+                                            <Button.Content>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Height="18" Name="imgPrevExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomprevious.png" />
+                                                    <TextBlock Height="15" Name="txtBlkPrevExtent" Text=" Prev Extent" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+                                                </StackPanel>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Background="#FF2D84CE" Height="35" Width="88">
+                                            <Button.Content>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Height="18" Name="imgNextExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomnext.png" />
+                                                    <TextBlock Height="15" Name="txtBlkNextExtent" Text=" Next Extent" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+                                                </StackPanel>
+                                            </Button.Content>
+                                        </Button>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Background="#FF2D84CE" Height="60"
-                                                Content="Full Extent" />
-                                        <Button Background="#FF2D84CE" Height="60"
-                                                Content="Pan" />
+                                        <Button Background="#FF2D84CE" Height="35" Width="88">
+                                            <Button.Content>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Height="18" Name="imgFullExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomfull.png" />
+                                                    <TextBlock Height="15" Name="txtBlkFullExtent" Text=" Full Extent" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+                                                </StackPanel>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button Background="#FF2D84CE" Height="35" Width="88">
+                                            <Button.Content>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Height="18" Name="imgPan" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_pan.png" />
+                                                    <TextBlock Height="15" Name="txtBlkPan" Text="  Pan" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+                                                </StackPanel>
+                                            </Button.Content>
+                                        </Button>
                                     </StackPanel>
                                 </StackPanel>
                             </toolkit:Expander>
@@ -78,10 +114,22 @@
                                               Width="180"
                                               Header="Map Tools">
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Background="#FF2D84CE" Height="60"
-                                        Content="Identify" />
-                                    <Button Background="#FF2D84CE" Height="60"
-                                            Content="Measure" />
+                                    <Button Background="#FF2D84CE" Height="35" Width="88">
+                                        <Button.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Height="18" Name="imgIdentify" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_identify.png" />
+                                                <TextBlock Height="15" Name="txtBlkIdentify" Text=" Identify" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+                                            </StackPanel>
+                                        </Button.Content>
+                                    </Button>
+                                    <Button Background="#FF2D84CE" Height="35" Width="88">
+                                        <Button.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Height="18" Name="imgMeasure" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_measure.png" />
+                                                <TextBlock Height="15" Name="txtBlkMeasure" Text=" Measure" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+                                            </StackPanel>
+                                        </Button.Content>
+                                    </Button>
                                 </StackPanel>
                                 
                             </toolkit:Expander>
