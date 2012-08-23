@@ -55,7 +55,7 @@
                                               Header="Navigation" IsExpanded="True">
                                 <StackPanel Orientation="Vertical" x:Name="navTools">
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Background="#FF2D84CE" Height="35" Width="88">
+                                        <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnZoomIn" Click="btnZoomIn_Click">
                                             <Button.Content>
                                                 <StackPanel Orientation="Horizontal">
                                                     <Image Height="18" Name="image1" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomin.png" />
@@ -63,7 +63,7 @@
                                                 </StackPanel>
                                             </Button.Content>
                                         </Button>
-                                        <Button Background="#FF2D84CE" Height="35" Width="88">
+                                        <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnZoomOut" Click="btnZoomOut_Click">
                                             <Button.Content>
                                                 <StackPanel Orientation="Horizontal">
                                                     <Image Height="18" Name="imgZoomOut" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomout.png" />
@@ -91,7 +91,7 @@
                                         </Button>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Background="#FF2D84CE" Height="35" Width="88">
+                                        <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnFullExtent" Click="btnFullExtent_Click">
                                             <Button.Content>
                                                 <StackPanel Orientation="Horizontal">
                                                     <Image Height="18" Name="imgFullExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomfull.png" />
@@ -99,7 +99,7 @@
                                                 </StackPanel>
                                             </Button.Content>
                                         </Button>
-                                        <Button Background="#FF2D84CE" Height="35" Width="88">
+                                        <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnPan" Click="btnPan_Click">
                                             <Button.Content>
                                                 <StackPanel Orientation="Horizontal">
                                                     <Image Height="18" Name="imgPan" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_pan.png" />
