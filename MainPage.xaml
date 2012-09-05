@@ -10,6 +10,11 @@
              mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.Resources>
+            <esri:SimpleFillSymbol x:Key="DefaultFillSymbol" Fill="#33FF0000" BorderBrush="Red" BorderThickness="2" />    
+        </Grid.Resources>
+        
+        <!-- Map Begin -->
         <esri:Map x:Name="myMap" Extent="778733.96207758,1133387.86320644,849794.792685476,1193607.08672764" IsLogoVisible="False">
             <esri:ArcGISDynamicMapServiceLayer ID="rasterDataset"
                                                Url="http://unibeast/ArcGIS/rest/services/RasterDataset/MapServer" ImageFormat="JPG"/>
@@ -17,6 +22,10 @@
                                                Url="http://unibeast/ArcGIS/rest/services/InternetVector/MapServer"/>
 
         </esri:Map>
+        <!-- Map End -->
+        
+        <esri:ScaleLine HorizontalAlignment="Left" Name="scaleline1" VerticalAlignment="Bottom" Map="{Binding ElementName=myMap}"/>
+        <esri:MapProgressBar VerticalAlignment="Center" HorizontalAlignment="Center" Name="mapProgressBar" Height="20" Width="150" Map="{Binding ElementName=myMap}" />
         <Canvas>
             
             <Border BorderThickness="1"
@@ -142,8 +151,7 @@
                                VerticalAlignment="Bottom"/>
                 </StackPanel>
             </Border>
-
+            
         </Canvas>
-        
     </Grid>
 </UserControl>

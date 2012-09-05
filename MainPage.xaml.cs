@@ -13,6 +13,8 @@ using ESRI.ArcGIS.Client;
 using ESRI.ArcGIS.Client.Geometry;
 
 
+
+
 namespace hybrid
 {
     public partial class MainPage : UserControl
@@ -44,6 +46,9 @@ namespace hybrid
         {
             MyDrawObject.IsEnabled = true;
             _toolMode = "zoomin";
+            // Change the background color of a button on click - http://forums.silverlight.net/p/259771/648943.aspx/1?How+to+change+button+colour+on+mouseclick+
+            btnZoomIn.Background = new SolidColorBrush(Colors.White);
+                        
         }
 
 
@@ -52,6 +57,7 @@ namespace hybrid
             if (_toolMode == "zoomin")
             {
                 myMap.ZoomTo(args.Geometry as ESRI.ArcGIS.Client.Geometry.Envelope);
+           
             }
             else if (_toolMode == "zoomout")
             {
@@ -93,6 +99,7 @@ namespace hybrid
         {
             MyDrawObject.IsEnabled = true;
             _toolMode = "zoomout";
+            btnZoomIn.Background = new SolidColorBrush(Color.FromArgb(255,45,132,206));
 
         }
 
@@ -104,7 +111,9 @@ namespace hybrid
 
         private void btnFullExtent_Click(object sender, RoutedEventArgs e)
         {
-            myMap.ZoomTo(myMap.Layers.GetFullExtent());
+            //myMap.ZoomTo(myMap.Layers.GetFullExtent());
+            myMap.ZoomTo(new Envelope(778733.96207758, 1133387.86320644, 849794.792685476, 1193607.08672764));
+
         }
                 
     }
