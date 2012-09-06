@@ -49,8 +49,10 @@
                              Width="150"
                              Map="{Binding ElementName=myMap}" />
         <!-- Map Progress Bar End -->
-        
-            <!-- Sidebar Begin -->
+
+        <esri:Bookmark HorizontalAlignment="Left" Margin="180,11,0,0" Name="bookmark1" VerticalAlignment="Top" Width="120" Map="{Binding ElementName=myMap}" />
+
+        <!-- Sidebar Begin -->
             <Border BorderThickness="1" 
                     BorderBrush="Silver"
                     Height="Auto"
