@@ -173,19 +173,19 @@
                             <!-- Map Tools Panel End -->
                             
                             <!-- Overview Map Begin -->
-                        <toolkit:Expander Height="Auto" Width="180" Header="Overview Map" IsExpanded="False">
-                            <StackPanel>
-                                <Border Height="200" Width="175" BorderThickness="1" BorderBrush="Silver">
-                                    <esri:OverviewMap Map="{Binding ElementName=myMap}" Background="White" Margin="8,0,0,8">
-                                        <esri:OverviewMap.Layer>
-                                            <esri:ArcGISDynamicMapServiceLayer ID="internetVector"
-                                                   Url="http://unibeast/ArcGIS/rest/services/InternetVector/MapServer"/>
-                                        </esri:OverviewMap.Layer>
-                                    </esri:OverviewMap>
-                                </Border>
+                            <toolkit:Expander Height="Auto" Width="180" Header="Overview Map" IsExpanded="False">
+                                <StackPanel>
+                                    <Border Height="190" Width="165" BorderThickness="1" BorderBrush="Silver">
+                                        <esri:OverviewMap Map="{Binding ElementName=myMap}" Background="White" Margin="8,0,0,8">
+                                            <esri:OverviewMap.Layer>
+                                                <esri:ArcGISDynamicMapServiceLayer ID="internetVector"
+                                                       Url="http://unibeast/ArcGIS/rest/services/InternetVector/MapServer"/>
+                                            </esri:OverviewMap.Layer>
+                                        </esri:OverviewMap>
+                                    </Border>
                                 
-                            </StackPanel>
-                        </toolkit:Expander>
+                                </StackPanel>
+                            </toolkit:Expander>
                             <!-- Overview Map End -->
                         </StackPanel>
                     </toolkit:Expander>
