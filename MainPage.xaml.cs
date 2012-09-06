@@ -45,6 +45,7 @@ namespace hybrid
         private void btnZoomIn_Click(object sender, RoutedEventArgs e)
         {
             MyDrawObject.IsEnabled = true;
+            // Zoom Map In
             _toolMode = "zoomin";
             // Change the background color of a button on click - http://forums.silverlight.net/p/259771/648943.aspx/1?How+to+change+button+colour+on+mouseclick+
             btnZoomIn.Background = new SolidColorBrush(Colors.White);
@@ -53,12 +54,15 @@ namespace hybrid
 
 
         private void myDrawObject_DrawComplete(object sender, DrawEventArgs args)
+
         {
+            // Draws the Zoom In Box
             if (_toolMode == "zoomin")
             {
                 myMap.ZoomTo(args.Geometry as ESRI.ArcGIS.Client.Geometry.Envelope);
            
             }
+            // Draws the Zoom Out Box
             else if (_toolMode == "zoomout")
             {
                 Envelope currentExtent = myMap.Extent;
@@ -97,22 +101,31 @@ namespace hybrid
 
         private void btnZoomOut_Click(object sender, RoutedEventArgs e)
         {
+            // Zoom Map Out
             MyDrawObject.IsEnabled = true;
             _toolMode = "zoomout";
+            btnZoomOut.Background = new SolidColorBrush(Colors.White);
             btnZoomIn.Background = new SolidColorBrush(Color.FromArgb(255,45,132,206));
 
         }
 
         private void btnPan_Click(object sender, RoutedEventArgs e)
         {
+            // Pan Map
             MyDrawObject.IsEnabled = false;
             _toolMode = "";
+            btnPan.Background = new SolidColorBrush(Colors.White);
         }
 
         private void btnFullExtent_Click(object sender, RoutedEventArgs e)
         {
             //myMap.ZoomTo(myMap.Layers.GetFullExtent());
+            // Zoom to Full Extent
+            // This is the extent the full extent button uses
             myMap.ZoomTo(new Envelope(778733.96207758, 1133387.86320644, 849794.792685476, 1193607.08672764));
+            btnZoomIn.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnZoomOut.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnPan.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
 
         }
                 

@@ -10,58 +10,86 @@
              mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot" Background="White">
+        <!-- Draws the box for zoom in and zoom out. -->
         <Grid.Resources>
-            <esri:SimpleFillSymbol x:Key="DefaultFillSymbol" Fill="#33FF0000" BorderBrush="Red" BorderThickness="2" />    
+            <esri:SimpleFillSymbol x:Key="DefaultFillSymbol" 
+                                   Fill="#33FF0000"
+                                   BorderBrush="Red"
+                                   BorderThickness="2" />    
         </Grid.Resources>
         
-        <!-- Map Begin -->
-        <esri:Map x:Name="myMap" Extent="778733.96207758,1133387.86320644,849794.792685476,1193607.08672764" IsLogoVisible="False">
-            <esri:ArcGISDynamicMapServiceLayer ID="rasterDataset"
-                                               Url="http://unibeast/ArcGIS/rest/services/RasterDataset/MapServer" ImageFormat="JPG"/>
-            <esri:ArcGISDynamicMapServiceLayer ID="internetVector"
-                                               Url="http://unibeast/ArcGIS/rest/services/InternetVector/MapServer"/>
-
+        <!-- Map Layers Begin -->
+        <esri:Map x:Name="myMap" 
+                  Extent="778733.96207758,1133387.86320644,849794.792685476,1193607.08672764"
+                  IsLogoVisible="False">
+            <esri:Map.Layers>
+                <esri:LayerCollection>
+                    <esri:ArcGISDynamicMapServiceLayer ID="rasterDataset"
+                                            Url="http://unibeast/ArcGIS/rest/services/RasterDataset/MapServer" 
+                                            ImageFormat="JPG"/>
+                    <esri:ArcGISDynamicMapServiceLayer ID="internetVector"
+                                            Url="http://unibeast/ArcGIS/rest/services/InternetVector/MapServer"/>
+                </esri:LayerCollection>
+            </esri:Map.Layers>
         </esri:Map>
-        <!-- Map End -->
+        <!-- Map Layers End -->
         
-        <esri:ScaleLine HorizontalAlignment="Left" Name="scaleline1" VerticalAlignment="Bottom" Map="{Binding ElementName=myMap}"/>
-        <esri:MapProgressBar VerticalAlignment="Center" HorizontalAlignment="Center" Name="mapProgressBar" Height="20" Width="150" Map="{Binding ElementName=myMap}" />
-        <Canvas>
-            
-            <Border BorderThickness="1"
+        <!-- Map Scale Line Begin -->
+        <esri:ScaleLine HorizontalAlignment="Left"
+                        Name="scaleline1"
+                        VerticalAlignment="Bottom"
+                        Map="{Binding ElementName=myMap}"/>
+        <!-- Map Scale Line End -->
+        
+        <!-- Map Progress Bar Begin -->
+        <esri:MapProgressBar VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             Name="mapProgressBar"
+                             Height="20"
+                             Width="150"
+                             Map="{Binding ElementName=myMap}" />
+        <!-- Map Progress Bar End -->
+        
+            <!-- Sidebar Begin -->
+            <Border BorderThickness="1" 
                     BorderBrush="Silver"
                     Height="Auto"
-                    HorizontalAlignment="Left"
-                    Margin="1000,50,0,0"
+                    HorizontalAlignment="Right"
                     x:Name="sideBar"
                     VerticalAlignment="Top"
                     Width="200"
                     Background="#E1EBFB"
                     CornerRadius="25"
-                    >
-            	<Border.Effect>
-            		<DropShadowEffect/>
-            	</Border.Effect>
+                    Margin="0,14,12,0">
+                <Border.Effect>
+                    <DropShadowEffect />
+                </Border.Effect>
                 <!-- Programmatically do this http://www.dotnetspider.com/tutorials/Silverlight-Tutorial-324.aspx -->
-            	<i:Interaction.Behaviors>
-            		<ei:MouseDragElementBehavior ConstrainToParentBounds="True"/>
-            	</i:Interaction.Behaviors>
+                <i:Interaction.Behaviors>
+                    <ei:MouseDragElementBehavior ConstrainToParentBounds="True" />
+                </i:Interaction.Behaviors>
                 <StackPanel>
                     <Rectangle Fill="White"
                                Height="15"
                                Margin="0,25,0,0"
-                               VerticalAlignment="Top"/>
+                               VerticalAlignment="Top" />
+                    <!-- Tools Panel Begin -->
                     <toolkit:Expander Height="Auto"
                                       x:Name="expanderMain"
                                       Header="Tools"
                                       Width="200"
                                       Foreground="#FF243C5F"
                                       FontWeight="Bold"
-                                      BorderBrush="#FFE1E4EC" IsExpanded="True">
+                                      BorderBrush="#FFE1E4EC"
+                                      IsExpanded="True">
+                        
                         <StackPanel Orientation="Vertical">
+                            <!-- Navigation Panel Begin -->
                             <toolkit:Expander Height="Auto"
                                               Width="180"
-                                              Header="Navigation" IsExpanded="True">
+                                              Header="Navigation"
+                                              IsExpanded="True">
+                                
                                 <StackPanel Orientation="Vertical" x:Name="navTools">
                                     <StackPanel Orientation="Horizontal">
                                         <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnZoomIn" Click="btnZoomIn_Click">
@@ -119,9 +147,10 @@
                                     </StackPanel>
                                 </StackPanel>
                             </toolkit:Expander>
-                            <toolkit:Expander Height="Auto"
-                                              Width="180"
-                                              Header="Map Tools">
+                            <!-- Navigation Panel End -->
+                            
+                            <!-- Map Tools Panel Begin -->
+                            <toolkit:Expander Height="Auto" Width="180" Header="Map Tools">
                                 <StackPanel Orientation="Horizontal">
                                     <Button Background="#FF2D84CE" Height="35" Width="88">
                                         <Button.Content>
@@ -140,18 +169,32 @@
                                         </Button.Content>
                                     </Button>
                                 </StackPanel>
-                                
                             </toolkit:Expander>
+                            <!-- Map Tools Panel End -->
                             
+                            <!-- Overview Map Begin -->
+                        <toolkit:Expander Height="Auto" Width="180" Header="Overview Map" IsExpanded="False">
+                            <StackPanel>
+                                <Border Height="200" Width="175" BorderThickness="1" BorderBrush="Silver">
+                                    <esri:OverviewMap Map="{Binding ElementName=myMap}" Background="White" Margin="8,0,0,8">
+                                        <esri:OverviewMap.Layer>
+                                            <esri:ArcGISDynamicMapServiceLayer ID="internetVector"
+                                                   Url="http://unibeast/ArcGIS/rest/services/InternetVector/MapServer"/>
+                                        </esri:OverviewMap.Layer>
+                                    </esri:OverviewMap>
+                                </Border>
+                                
+                            </StackPanel>
+                        </toolkit:Expander>
+                            <!-- Overview Map End -->
                         </StackPanel>
                     </toolkit:Expander>
-                    <Rectangle Fill="White"
-                               Height="15"
-                               Margin="0,0,0,25"
-                               VerticalAlignment="Bottom"/>
+                    <!-- Tools Panel End -->
+                    <Rectangle Fill="White" Height="15" Margin="0,0,0,25" VerticalAlignment="Bottom" />
                 </StackPanel>
             </Border>
-            
-        </Canvas>
+            <!-- Sidebar End -->
+        
+        
     </Grid>
 </UserControl>
