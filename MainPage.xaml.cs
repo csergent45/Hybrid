@@ -23,6 +23,8 @@ namespace hybrid
         List<Envelope> _extentHistory = new List<Envelope>();
         int _currentExtentIndex = 0;
         bool _newExtent = true;
+        Image _previousExtentImage;
+        Image _nextExtentImage;
 
         private Draw MyDrawObject;
 
@@ -38,6 +40,11 @@ namespace hybrid
             MyDrawObject.DrawComplete += myDrawObject_DrawComplete;
             MyDrawObject.IsEnabled = false;
             _toolMode = "";
+            _previousExtentImage = btnPrevExtent.Content as Image;
+            _nextExtentImage = btnNextExtent.Content as Image;
+
+            
+
 
 
         }
@@ -128,6 +135,100 @@ namespace hybrid
             btnPan.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
 
         }
+
+
+        private void myMap_ExtentChanged(object sender, ExtentEventArgs e)
+        {
+            if (e.OldExtent == null)
+            {
+                _extentHistory.Add(e.NewExtent.Clone());
+                return;
+            }
+
+            if (_newExtent)
+            {
+                _currentExtentIndex++;
+
+                if (_extentHistory.Count - _currentExtentIndex > 0)
+                    _extentHistory.RemoveRange(_currentExtentIndex, (_extentHistory.Count - _currentExtentIndex));
+
+                if (btnNextExtent.IsHitTestVisible == true)
+                {
+                    btnNextExtent.Opacity = 0.3;
+                    btnNextExtent.IsHitTestVisible = false;
+                }
+
+                _extentHistory.Add(e.NewExtent.Clone());
+
+                if (btnPrevExtent.IsHitTestVisible == false)
+                {
+                    btnPrevExtent.Opacity = 1;
+                    btnPrevExtent.IsHitTestVisible = true;
+                    
+                }
+            }
+            else
+            {
+                myMap.IsHitTestVisible = true;
+                _newExtent = true;
+            }
+        }
+
+        private void btnPrevExtent_Click(object sender, RoutedEventArgs e)
+        {
+            if (_currentExtentIndex != 0)
+            {
+                _currentExtentIndex--;
+
+                if (_currentExtentIndex == 0)
+                {
+                    btnPrevExtent.Opacity = 0.3;
+                    btnPrevExtent.IsHitTestVisible = false;
+                    
+                }
+
+                _newExtent = false;
+
+                myMap.IsHitTestVisible = false;
+                myMap.ZoomTo(_extentHistory[_currentExtentIndex]);
+
+                if (btnNextExtent.IsHitTestVisible == false)
+                {
+                    btnNextExtent.Opacity = 1;
+                    btnNextExtent.IsHitTestVisible = true;
+
+                }
+            }
+
+        }
+
+        private void btnNextExtent_Click(object sender, RoutedEventArgs e)
+        {
+            if (_currentExtentIndex < _extentHistory.Count - 1)
+            {
+                _currentExtentIndex++;
+
+                if (_currentExtentIndex == (_extentHistory.Count - 1))
+                {
+                    btnNextExtent.Opacity = 0.3;
+                    btnNextExtent.IsHitTestVisible = false;
+                }
+
+                _newExtent = false;
+
+                myMap.IsHitTestVisible = false;
+                myMap.ZoomTo(_extentHistory[_currentExtentIndex]);
+
+                if (btnPrevExtent.IsHitTestVisible == false)
+                {
+                    btnPrevExtent.Opacity = 1;
+                    btnPrevExtent.IsHitTestVisible = true;
+                }
+            }
+
+        }
+
+      
                 
     }
 }

@@ -21,7 +21,8 @@
         <!-- Map Layers Begin -->
         <esri:Map x:Name="myMap" 
                   Extent="778733.96207758,1133387.86320644,849794.792685476,1193607.08672764"
-                  IsLogoVisible="False">
+                  IsLogoVisible="False"
+                  ExtentChanged="myMap_ExtentChanged">
             <esri:Map.Layers>
                 <esri:LayerCollection>
                     <esri:ArcGISDynamicMapServiceLayer ID="rasterDataset"
@@ -50,7 +51,12 @@
                              Map="{Binding ElementName=myMap}" />
         <!-- Map Progress Bar End -->
 
-        <esri:Bookmark HorizontalAlignment="Left" Margin="180,11,0,0" Name="bookmark1" VerticalAlignment="Top" Width="120" Map="{Binding ElementName=myMap}" />
+        <esri:Bookmark HorizontalAlignment="Left"
+                       Margin="180,11,0,0"
+                       Name="bookmark1"
+                       VerticalAlignment="Top"
+                       Width="120"
+                       Map="{Binding ElementName=myMap}" />
 
         <!-- Sidebar Begin -->
             <Border BorderThickness="1" 
@@ -112,7 +118,7 @@
                                         </Button>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Background="#FF2D84CE" Height="35" Width="88">
+                                        <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnPrevExtent" IsHitTestVisible="False" Opacity="0.3" Click="btnPrevExtent_Click">
                                             <Button.Content>
                                                 <StackPanel Orientation="Horizontal">
                                                     <Image Height="18" Name="imgPrevExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomprevious.png" />
@@ -120,7 +126,7 @@
                                                 </StackPanel>
                                             </Button.Content>
                                         </Button>
-                                        <Button Background="#FF2D84CE" Height="35" Width="88">
+                                        <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnNextExtent" IsHitTestVisible="False" Opacity="0.3" Click="btnNextExtent_Click">
                                             <Button.Content>
                                                 <StackPanel Orientation="Horizontal">
                                                     <Image Height="18" Name="imgNextExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomnext.png" />
