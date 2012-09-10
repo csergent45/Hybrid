@@ -56,6 +56,10 @@ namespace hybrid
             _toolMode = "zoomin";
             // Change the background color of a button on click - http://forums.silverlight.net/p/259771/648943.aspx/1?How+to+change+button+colour+on+mouseclick+
             btnZoomIn.Background = new SolidColorBrush(Colors.White);
+            btnZoomOut.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnPan.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnIdentify.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnMeasure.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
                         
         }
 
@@ -113,6 +117,10 @@ namespace hybrid
             _toolMode = "zoomout";
             btnZoomOut.Background = new SolidColorBrush(Colors.White);
             btnZoomIn.Background = new SolidColorBrush(Color.FromArgb(255,45,132,206));
+            btnZoomIn.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnPan.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnIdentify.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnMeasure.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
 
         }
 
@@ -122,6 +130,10 @@ namespace hybrid
             MyDrawObject.IsEnabled = false;
             _toolMode = "";
             btnPan.Background = new SolidColorBrush(Colors.White);
+            btnZoomIn.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnZoomOut.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnIdentify.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnMeasure.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
         }
 
         private void btnFullExtent_Click(object sender, RoutedEventArgs e)
@@ -133,6 +145,8 @@ namespace hybrid
             btnZoomIn.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
             btnZoomOut.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
             btnPan.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnIdentify.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnMeasure.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
 
         }
 
@@ -226,6 +240,25 @@ namespace hybrid
                 }
             }
 
+        }
+
+        private void btnIdentify_Click(object sender, RoutedEventArgs e)
+        {
+            btnIdentify.Background = new SolidColorBrush(Colors.White);
+            btnZoomIn.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnZoomOut.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnPan.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnMeasure.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+        }
+
+        private void btnMeasure_Click(object sender, RoutedEventArgs e)
+        {
+            btnMeasure.Background = new SolidColorBrush(Colors.White);
+            btnZoomIn.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnZoomOut.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnPan.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            btnIdentify.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            
         }
 
       

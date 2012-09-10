@@ -100,7 +100,11 @@
                                 
                                 <StackPanel Orientation="Vertical" x:Name="navTools">
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnZoomIn" Click="btnZoomIn_Click">
+                                        <Button Background="#FF2D84CE" 
+                                                Height="35"
+                                                Width="88"
+                                                Name="btnZoomIn"
+                                                Click="btnZoomIn_Click">
                                             <Button.Content>
                                                 <StackPanel Orientation="Horizontal">
                                                     <Image Height="18" Name="image1" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomin.png" />
@@ -160,7 +164,7 @@
                             <!-- Map Tools Panel Begin -->
                             <toolkit:Expander Height="Auto" Width="180" Header="Map Tools">
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Background="#FF2D84CE" Height="35" Width="88">
+                                    <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnIdentify" Click="btnIdentify_Click">
                                         <Button.Content>
                                             <StackPanel Orientation="Horizontal">
                                                 <Image Height="18" Name="imgIdentify" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_identify.png" />
@@ -168,7 +172,7 @@
                                             </StackPanel>
                                         </Button.Content>
                                     </Button>
-                                    <Button Background="#FF2D84CE" Height="35" Width="88">
+                                    <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnMeasure" Click="btnMeasure_Click">
                                         <Button.Content>
                                             <StackPanel Orientation="Horizontal">
                                                 <Image Height="18" Name="imgMeasure" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_measure.png" />
