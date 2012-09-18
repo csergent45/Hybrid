@@ -51,161 +51,149 @@
                              Map="{Binding ElementName=myMap}" />
         <!-- Map Progress Bar End -->
 
+        <!-- Bookmark Begin -->
         <esri:Bookmark HorizontalAlignment="Left"
                        Margin="180,11,0,0"
                        Name="bookmark1"
                        VerticalAlignment="Top"
                        Width="120"
                        Map="{Binding ElementName=myMap}" />
-
-        <!-- Sidebar Begin -->
-            <Border BorderThickness="1" 
-                    BorderBrush="Silver"
-                    Height="Auto"
-                    HorizontalAlignment="Right"
-                    x:Name="sideBar"
-                    VerticalAlignment="Top"
-                    Width="200"
-                    Background="#E1EBFB"
-                    CornerRadius="25"
-                    Margin="0,14,12,0">
-                <Border.Effect>
-                    <DropShadowEffect />
-                </Border.Effect>
+        <!-- Bookmark End -->
+		
+		<!-- Sidebar Begin -->
+        <Border BorderThickness="1" 
+        		BorderBrush="Silver"
+        		Height="Auto"
+        		HorizontalAlignment="Right"
+        		x:Name="sideBar"
+        		VerticalAlignment="Top"
+        		Width="200"
+        		Background="#E1EBFB"
+        		CornerRadius="25" Margin="0,10,20,0" Padding="0"
+                    >
+        		<Border.Effect>
+        			<DropShadowEffect />
+        		</Border.Effect>
                 <!-- Programmatically do this http://www.dotnetspider.com/tutorials/Silverlight-Tutorial-324.aspx -->
-                <i:Interaction.Behaviors>
-                    <ei:MouseDragElementBehavior ConstrainToParentBounds="True" />
-                </i:Interaction.Behaviors>
-                <StackPanel>
-                    <Rectangle Fill="White"
-                               Height="15"
-                               Margin="0,25,0,0"
-                               VerticalAlignment="Top" />
+        		<i:Interaction.Behaviors>
+        			<ei:MouseDragElementBehavior ConstrainToParentBounds="True" />
+        		</i:Interaction.Behaviors>
+        		<StackPanel>
+        			<Rectangle Fill="White"
+        				Height="15"
+        				Margin="0,25,0,0"
+        				VerticalAlignment="Top" />
                     <!-- Tools Panel Begin -->
-                    <toolkit:Expander Height="Auto"
-                                      x:Name="expanderMain"
-                                      Header="Tools"
-                                      Width="200"
-                                      Foreground="#FF243C5F"
-                                      FontWeight="Bold"
-                                      BorderBrush="#FFE1E4EC"
-                                      IsExpanded="True">
+        			<toolkit:Expander Height="Auto"
+        				x:Name="expanderMain"
+        				Header="Tools"
+        				Width="200"
+        				Foreground="#FF243C5F"
+        				FontWeight="Bold"
+        				BorderBrush="#FFE1E4EC"
+        				IsExpanded="True">
                         
-                        <StackPanel Orientation="Vertical">
+        				<StackPanel Orientation="Vertical">
+        					
+        					
+        					
                             <!-- Navigation Panel Begin -->
-                            <toolkit:Expander Height="Auto"
-                                              Width="180"
-                                              Header="Navigation"
-                                              IsExpanded="True">
+        					<toolkit:Expander Height="Auto"
+        						Width="180"
+        						Header="Navigation"
+        						IsExpanded="True">
                                 
-                                <StackPanel Orientation="Vertical" x:Name="navTools">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Background="#FF2D84CE" 
-                                                Height="35"
-                                                Width="88"
-                                                Name="btnZoomIn"
-                                                Click="btnZoomIn_Click">
-                                            <Button.Content>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Image Height="18" Name="image1" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomin.png" />
-                                                    <TextBlock Height="15" Name="textBlock1" Text="  Zoom In" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
-                                                </StackPanel>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnZoomOut" Click="btnZoomOut_Click">
-                                            <Button.Content>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Image Height="18" Name="imgZoomOut" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomout.png" />
-                                                    <TextBlock Height="15" Name="txtBlkZoomOut" Text="  Zoom Out" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
-                                                </StackPanel>
-                                            </Button.Content>
-                                        </Button>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnPrevExtent" IsHitTestVisible="False" Opacity="0.3" Click="btnPrevExtent_Click">
-                                            <Button.Content>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Image Height="18" Name="imgPrevExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomprevious.png" />
-                                                    <TextBlock Height="15" Name="txtBlkPrevExtent" Text=" Prev Extent" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
-                                                </StackPanel>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnNextExtent" IsHitTestVisible="False" Opacity="0.3" Click="btnNextExtent_Click">
-                                            <Button.Content>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Image Height="18" Name="imgNextExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomnext.png" />
-                                                    <TextBlock Height="15" Name="txtBlkNextExtent" Text=" Next Extent" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
-                                                </StackPanel>
-                                            </Button.Content>
-                                        </Button>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnFullExtent" Click="btnFullExtent_Click">
-                                            <Button.Content>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Image Height="18" Name="imgFullExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomfull.png" />
-                                                    <TextBlock Height="15" Name="txtBlkFullExtent" Text=" Full Extent" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
-                                                </StackPanel>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnPan" Click="btnPan_Click">
-                                            <Button.Content>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Image Height="18" Name="imgPan" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_pan.png" />
-                                                    <TextBlock Height="15" Name="txtBlkPan" Text="  Pan" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
-                                                </StackPanel>
-                                            </Button.Content>
-                                        </Button>
-                                    </StackPanel>
-                                </StackPanel>
-                            </toolkit:Expander>
+        						<StackPanel Orientation="Vertical" x:Name="navTools">
+        							<StackPanel Orientation="Horizontal">
+        								<Button Background="#FF2D84CE" 
+        									Height="35"
+        									Width="88"
+        									x:Name="btnZoomIn"
+        									Click="btnZoomIn_Click">
+        									<StackPanel Orientation="Horizontal">
+        										<Image Height="18" x:Name="image1" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomin.png" />
+        										<TextBlock Height="15" x:Name="textBlock1" Text="  Zoom In" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+        									</StackPanel>
+        								</Button>
+        								<Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnZoomOut" Click="btnZoomOut_Click">
+        									<StackPanel Orientation="Horizontal">
+        										<Image Height="18" x:Name="imgZoomOut" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomout.png" />
+        										<TextBlock Height="15" x:Name="txtBlkZoomOut" Text="  Zoom Out" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+        									</StackPanel>
+        								</Button>
+        							</StackPanel>
+        							<StackPanel Orientation="Horizontal">
+        								<Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnPrevExtent" IsHitTestVisible="False" Opacity="0.3" Click="btnPrevExtent_Click">
+        									<StackPanel Orientation="Horizontal">
+        										<Image Height="18" x:Name="imgPrevExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomprevious.png" />
+        										<TextBlock Height="15" x:Name="txtBlkPrevExtent" Text=" Prev Extent" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+        									</StackPanel>
+        								</Button>
+        								<Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnNextExtent" IsHitTestVisible="False" Opacity="0.3" Click="btnNextExtent_Click">
+        									<StackPanel Orientation="Horizontal">
+        										<Image Height="18" x:Name="imgNextExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomnext.png" />
+        										<TextBlock Height="15" x:Name="txtBlkNextExtent" Text=" Next Extent" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+        									</StackPanel>
+        								</Button>
+        							</StackPanel>
+        							<StackPanel Orientation="Horizontal">
+        								<Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnFullExtent" Click="btnFullExtent_Click">
+        									<StackPanel Orientation="Horizontal">
+        										<Image Height="18" x:Name="imgFullExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomfull.png" />
+        										<TextBlock Height="15" x:Name="txtBlkFullExtent" Text=" Full Extent" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+        									</StackPanel>
+        								</Button>
+        								<Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnPan" Click="btnPan_Click">
+        									<StackPanel Orientation="Horizontal">
+        										<Image Height="18" x:Name="imgPan" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_pan.png" />
+        										<TextBlock Height="15" x:Name="txtBlkPan" Text="  Pan" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+        									</StackPanel>
+        								</Button>
+        							</StackPanel>
+        						</StackPanel>
+        					</toolkit:Expander>
                             <!-- Navigation Panel End -->
                             
                             <!-- Map Tools Panel Begin -->
-                            <toolkit:Expander Height="Auto" Width="180" Header="Map Tools">
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnIdentify" Click="btnIdentify_Click">
-                                        <Button.Content>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Height="18" Name="imgIdentify" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_identify.png" />
-                                                <TextBlock Height="15" Name="txtBlkIdentify" Text=" Identify" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
-                                            </StackPanel>
-                                        </Button.Content>
-                                    </Button>
-                                    <Button Background="#FF2D84CE" Height="35" Width="88" Name="btnMeasure" Click="btnMeasure_Click">
-                                        <Button.Content>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Height="18" Name="imgMeasure" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_measure.png" />
-                                                <TextBlock Height="15" Name="txtBlkMeasure" Text=" Measure" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
-                                            </StackPanel>
-                                        </Button.Content>
-                                    </Button>
-                                </StackPanel>
-                            </toolkit:Expander>
+        					<toolkit:Expander Height="Auto" Width="180" Header="Map Tools">
+        						<StackPanel Orientation="Horizontal">
+        							<Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnIdentify" Click="btnIdentify_Click">
+        								<StackPanel Orientation="Horizontal">
+        									<Image Height="18" x:Name="imgIdentify" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_identify.png" />
+        									<TextBlock Height="15" x:Name="txtBlkIdentify" Text=" Identify" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+        								</StackPanel>
+        							</Button>
+        							<Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnMeasure" Click="btnMeasure_Click">
+        								<StackPanel Orientation="Horizontal">
+        									<Image Height="18" x:Name="imgMeasure" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_measure.png" />
+        									<TextBlock Height="15" x:Name="txtBlkMeasure" Text=" Measure" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+        								</StackPanel>
+        							</Button>
+        						</StackPanel>
+        					</toolkit:Expander>
                             <!-- Map Tools Panel End -->
                             
                             <!-- Overview Map Begin -->
-                            <toolkit:Expander Height="Auto" Width="180" Header="Overview Map" IsExpanded="False">
-                                <StackPanel>
-                                    <Border Height="190" Width="165" BorderThickness="1" BorderBrush="Silver">
-                                        <esri:OverviewMap Map="{Binding ElementName=myMap}" Background="White" Margin="8,0,0,8">
-                                            <esri:OverviewMap.Layer>
-                                                <esri:ArcGISDynamicMapServiceLayer ID="internetVector"
-                                                       Url="http://unibeast/ArcGIS/rest/services/InternetVector/MapServer"/>
-                                            </esri:OverviewMap.Layer>
-                                        </esri:OverviewMap>
-                                    </Border>
+        					<toolkit:Expander Height="Auto" Width="180" Header="Overview Map" IsExpanded="False">
+        						<StackPanel>
+        							<Border Height="190" Width="165" BorderThickness="1" BorderBrush="Silver">
+        								<esri:OverviewMap Map="{Binding ElementName=myMap}" Background="White" Margin="8,0,0,8">
+        									<esri:ArcGISDynamicMapServiceLayer ID="internetVector"
+        										Url="http://unibeast/ArcGIS/rest/services/InternetVector/MapServer"/>
+        								</esri:OverviewMap>
+        							</Border>
                                 
-                                </StackPanel>
-                            </toolkit:Expander>
+        						</StackPanel>
+        					</toolkit:Expander>
                             <!-- Overview Map End -->
-                        </StackPanel>
-                    </toolkit:Expander>
+                            
+                    </StackPanel>
+        			</toolkit:Expander>
                     <!-- Tools Panel End -->
-                    <Rectangle Fill="White" Height="15" Margin="0,0,0,25" VerticalAlignment="Bottom" />
-                </StackPanel>
-            </Border>
-            <!-- Sidebar End -->
+        			<Rectangle Fill="White" Height="15" Margin="0,0,0,25" VerticalAlignment="Bottom" />
+        		</StackPanel>
+        	</Border>
+        <!-- Sidebar End -->
         
         
     </Grid>

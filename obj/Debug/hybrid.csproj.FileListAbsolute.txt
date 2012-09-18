@@ -376,9 +376,9 @@ C:\Inetpub\wwwroot\hybrid\Bin\Debug\ru\System.Xml.Serialization.resources.dll
 C:\Inetpub\wwwroot\hybrid\Bin\Debug\zh-Hans\System.Xml.Serialization.resources.dll
 C:\Inetpub\wwwroot\hybrid\Bin\Debug\zh-Hant\System.Xml.Serialization.resources.dll
 C:\Inetpub\wwwroot\hybrid\obj\Debug\ResolveAssemblyReference.cache
-C:\Inetpub\wwwroot\hybrid\obj\Debug\App.g.i.cs
-C:\Inetpub\wwwroot\hybrid\obj\Debug\MainPage.g.i.cs
 C:\Inetpub\wwwroot\hybrid\obj\Debug\hybrid.g.resources
 C:\Inetpub\wwwroot\hybrid\obj\Debug\hybrid.dll
 C:\Inetpub\wwwroot\hybrid\obj\Debug\hybrid.pdb
 C:\Inetpub\wwwroot\hybrid\obj\Debug\XapCacheFile.xml
+C:\Inetpub\wwwroot\hybrid\obj\Debug\App.g.i.cs
+C:\Inetpub\wwwroot\hybrid\obj\Debug\MainPage.g.i.cs
