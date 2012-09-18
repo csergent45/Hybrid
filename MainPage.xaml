@@ -35,6 +35,99 @@
         </esri:Map>
         <!-- Map Layers End -->
         
+        <!-- Measure Tools Begin -->
+        <Border x:Name="measureTools"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                Visibility="Collapsed"
+                Background="#E1EBFB"
+        		CornerRadius="25">
+            <StackPanel Orientation="Vertical">
+                <StackPanel>
+                    <Button x:Name="btnCloseTools" Content="Close Tools" Click="btnCloseTools_Click">
+                        
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Background="#FF2D84CE"
+                            Height="35"
+                            Width="88"
+                            x:Name="btnPoint">
+                       
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="18"
+                                   x:Name="imgPoint"
+                                   Stretch="Fill"
+                                   Width="18"
+                                   Source="/hybrid;component/Images/i_draw_point.png" />
+                            <TextBlock Height="15"
+                                       x:Name="txtBlkPoint"
+                                       Text="  Point"
+                                       TextAlignment="Center"
+                                       FontFamily="Arial"
+                                       FontSize="10" />
+                                   
+                        </StackPanel>
+                    </Button>
+                    <Button Background="#FF2D84CE"
+                            Height="35"
+                            Width="88"
+                            x:Name="btnLine">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <esri:MeasureAction
+                                    AreaUnit="SquareMiles"
+                                    DisplayTotals="True"
+                                    DistanceUnit="Miles"
+                                    MapUnits="Miles"
+                                    MeasureMode="Polyline"
+                                    FillSymbol="{StaticResource DefaultFillSymbol}"
+                                    TargetName="myMap" />
+                            </i:EventTrigger>
+                            
+                        </i:Interaction.Triggers>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="18"
+                                   x:Name="imgLine"
+                                   Stretch="Fill"
+                                   Width="18"
+                                   Source="/hybrid;component/Images/i_draw.png" />
+                            <TextBlock Height="15"
+                                       x:Name="txtBlkLine"
+                                       Text="  Coordinates"
+                                       TextAlignment="Center"
+                                       FontFamily="Arial"
+                                       FontSize="10" />
+                        </StackPanel>
+                    </Button>
+                    
+                    <Button Background="#FF2D84CE"
+                            Height="35"
+                            Width="88"
+                            x:Name="btnPolygon">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="18"
+                                   x:Name="imgPolygon"
+                                   Stretch="Fill"
+                                   Width="18"
+                                   Source="/hybrid;component/Images/i_draw_poly.png" />
+                            <TextBlock Height="15"
+                                       x:Name="txtBlkPolygon"
+                                       Text="  Polygon"
+                                       TextAlignment="Center"
+                                       FontFamily="Arial"
+                                       FontSize="10" />
+                        </StackPanel>
+                    </Button>
+                            
+                </StackPanel>
+                
+            </StackPanel>
+            
+        </Border>
+        <!-- Measure Tools End -->
+        
         <!-- Map Scale Line Begin -->
         <esri:ScaleLine HorizontalAlignment="Left"
                         Name="scaleline1"

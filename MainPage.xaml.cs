@@ -15,6 +15,7 @@ using ESRI.ArcGIS.Client.Geometry;
 
 
 
+
 namespace hybrid
 {
     public partial class MainPage : UserControl
@@ -258,7 +259,13 @@ namespace hybrid
             btnZoomOut.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
             btnPan.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
             btnIdentify.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            measureTools.Visibility = Visibility.Visible;
             
+        }
+
+        private void btnCloseTools_Click(object sender, RoutedEventArgs e)
+        {
+            measureTools.Visibility = Visibility.Collapsed;
         }
 
       
