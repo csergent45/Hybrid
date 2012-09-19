@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using ESRI.ArcGIS.Client;
 using ESRI.ArcGIS.Client.Geometry;
+using ESRI.ArcGIS.Client.Symbols;
 
 
 
@@ -28,6 +29,7 @@ namespace hybrid
         Image _nextExtentImage;
 
         private Draw MyDrawObject;
+        private Symbol _activeSymbol = null; // For drawing points on the map.
 
         public MainPage()
         {
@@ -266,6 +268,13 @@ namespace hybrid
         private void btnCloseTools_Click(object sender, RoutedEventArgs e)
         {
             measureTools.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnPoint_Click(object sender, RoutedEventArgs e)
+        {
+          
+
+                    
         }
 
       

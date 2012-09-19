@@ -30,6 +30,7 @@
                                             ImageFormat="JPG"/>
                     <esri:ArcGISDynamicMapServiceLayer ID="internetVector"
                                             Url="http://unibeast/ArcGIS/rest/services/InternetVector/MapServer"/>
+                    <esri:GraphicsLayer ID="myGraphicsLayer" />
                 </esri:LayerCollection>
             </esri:Map.Layers>
         </esri:Map>
@@ -41,18 +42,23 @@
                 HorizontalAlignment="Center"
                 Visibility="Collapsed"
                 Background="#E1EBFB"
-        		CornerRadius="25">
+        		CornerRadius="25"
+                Height="Auto">
             <StackPanel Orientation="Vertical">
+                <!-- Close Measure Tools Begin -->
                 <StackPanel>
                     <Button x:Name="btnCloseTools" Content="Close Tools" Click="btnCloseTools_Click">
                         
                     </Button>
                 </StackPanel>
+                <!-- Close Measure Tools End -->
+                
+                <!-- Measure Tools Buttons Begin -->
                 <StackPanel Orientation="Horizontal">
                     <Button Background="#FF2D84CE"
                             Height="35"
                             Width="88"
-                            x:Name="btnPoint">
+                            x:Name="btnPoint" Click="btnPoint_Click">
                        
 
                         <StackPanel Orientation="Horizontal">
@@ -74,19 +80,7 @@
                             Height="35"
                             Width="88"
                             x:Name="btnLine">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Click">
-                                <esri:MeasureAction
-                                    AreaUnit="SquareMiles"
-                                    DisplayTotals="True"
-                                    DistanceUnit="Miles"
-                                    MapUnits="Miles"
-                                    MeasureMode="Polyline"
-                                    FillSymbol="{StaticResource DefaultFillSymbol}"
-                                    TargetName="myMap" />
-                            </i:EventTrigger>
-                            
-                        </i:Interaction.Triggers>
+                        
                         <StackPanel Orientation="Horizontal">
                             <Image Height="18"
                                    x:Name="imgLine"
@@ -120,9 +114,22 @@
                                        FontSize="10" />
                         </StackPanel>
                     </Button>
-                            
+                                               
                 </StackPanel>
+                <!-- Measure Tools Buttons End -->
                 
+                <StackPanel Height="30">
+                    <TextBlock Height="15"
+                               x:Name="txtBlkMeasurement"
+                               TextAlignment="Center"
+                               FontFamily="Arial"
+                               FontSize="10"
+                               FontWeight="Bold"
+                               Text="Measurement or Coordinates will go here."/>
+                </StackPanel>
+
+                
+
             </StackPanel>
             
         </Border>
