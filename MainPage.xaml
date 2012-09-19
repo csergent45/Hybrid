@@ -63,7 +63,7 @@
                                    Source="/hybrid;component/Images/i_draw_point.png" />
                             <TextBlock Height="15"
                                        x:Name="txtBlkPoint"
-                                       Text="  Point"
+                                       Text="  Coordinates"
                                        TextAlignment="Center"
                                        FontFamily="Arial"
                                        FontSize="10" />
@@ -95,7 +95,7 @@
                                    Source="/hybrid;component/Images/i_draw.png" />
                             <TextBlock Height="15"
                                        x:Name="txtBlkLine"
-                                       Text="  Coordinates"
+                                       Text="  Line"
                                        TextAlignment="Center"
                                        FontFamily="Arial"
                                        FontSize="10" />
