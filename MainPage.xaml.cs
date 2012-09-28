@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 using ESRI.ArcGIS.Client;
 using ESRI.ArcGIS.Client.Geometry;
 using ESRI.ArcGIS.Client.Symbols;
-
+using ESRI.ArcGIS.Client.Tasks;
 
 
 
@@ -28,8 +28,21 @@ namespace hybrid
         Image _previousExtentImage;
         Image _nextExtentImage;
 
+        // Defines the drawing used to draw the zoom box for zoom in and zoom out
         private Draw MyDrawObject;
-        private Symbol _activeSymbol = null; // For drawing points on the map.
+
+        // Defines measuring graphics to draw
+        private Draw myMeasureObject;
+
+        // Defines the measuring graphics layer
+        GraphicsLayer graphicsLayer;
+
+        // Initializes the geometry service for measuring lines and polygons
+        GeometryService geometryService = new GeometryService("http://unibeast/ArcGIS/rest/services/Geometry/GeometryServer");
+        
+        // Generic variable for drawing points, polygons and lines
+        private Symbol _activeSymbol = null;
+        private string symbology = null;
 
         public MainPage()
         {
@@ -46,7 +59,20 @@ namespace hybrid
             _previousExtentImage = btnPrevExtent.Content as Image;
             _nextExtentImage = btnNextExtent.Content as Image;
 
-            
+            // Initializes the graphics layer
+            graphicsLayer = myMap.Layers["myGraphicsLayer"] as GraphicsLayer;
+
+            myMeasureObject = new Draw(myMap)
+            {
+                // Sets the initial drawing of the line and polygon
+                FillSymbol = LayoutRoot.Resources["RedFillSymbol"] as ESRI.ArcGIS.Client.Symbols.FillSymbol,
+                LineSymbol = LayoutRoot.Resources["RedLineSymbol"] as ESRI.ArcGIS.Client.Symbols.CartographicLineSymbol
+            };
+
+            // Runs the measure draw complete method
+            myMeasureObject.DrawComplete += myMeasureObject_DrawComplete;
+            // Disables the measure drawing once a graphic is drawn - in other words, I don't want to draw multiple graphics
+            myMeasureObject.IsEnabled = false;
 
 
 
@@ -270,11 +296,110 @@ namespace hybrid
             measureTools.Visibility = Visibility.Collapsed;
         }
 
+        
+        // Handles drawing the measure tools graphic
+        private void myMeasureObject_DrawComplete(object sender, ESRI.ArcGIS.Client.DrawEventArgs args)
+        {
+            // Enables the drawing of the measuring graphic or point
+            myMeasureObject.IsEnabled = true;
+            // Removes previously drawn graphics
+            graphicsLayer.ClearGraphics();
+
+            // Initializes a new graphic
+            Graphic graphic = new Graphic()
+            {
+                Geometry = args.Geometry,
+                // Set the active symbol
+                Symbol = _activeSymbol
+            };
+
+            // Adds the drawn graphic to the map
+            graphicsLayer.Graphics.Add(graphic);
+
+            if (symbology == "Point")
+            {
+                txtBlkMeasurement.Text = "Map Coords: X=" + Convert.ToString(graphic.Geometry.Extent.XMax) + ", Y= " + Convert.ToString(graphic.Geometry.Extent.YMax);
+            }
+
+            if (symbology == "Polygon")
+            {
+                txtBlkMeasurement.Text = "";
+                geometryService.AreasAndLengthsCompleted += GeometryService_AreasAndLengthsCompleted;
+                geometryService.AreasAndLengthsAsync(graphicsLayer.Graphics.ToList());
+            }
+
+            if (symbology == "Polyline")
+            {
+                txtBlkMeasurement.Text = "";
+                geometryService.LengthsCompleted += GeometryService_LengthsCompleted;
+                geometryService.LengthsAsync(graphicsLayer.Graphics.ToList());
+            }
+
+            // Disable the drawing of additional graphics
+            myMeasureObject.IsEnabled = false;
+        }
+
+        // Measure Polygon
+        private void GeometryService_AreasAndLengthsCompleted(object sender, AreasAndLengthsEventArgs args)
+        {
+            for (int i = 0; i < args.Results.Areas.Count; i++)
+            {
+                txtBlkMeasurement.Text = string.Format("Area = {1} sq. feet, \nPerimeter = {2} feet", i, Math.Abs(args.Results.Areas[i]).ToString("#0.00"), Math.Abs(args.Results.Lengths[i]).ToString("#0.00"));
+            }
+        }
+
+        // Measure Line
+        private void GeometryService_LengthsCompleted(object sender, LengthsEventArgs args)
+        {
+            for (int i = 0; i < args.Results.Count; i++)
+            {
+                txtBlkMeasurement.Text = string.Format("Length = {1} feet", i, args.Results[i].ToString("#0.00"));
+            }
+        }
+
+
         private void btnPoint_Click(object sender, RoutedEventArgs e)
         {
-          
+            txtBlkMeasurement.Text = "";
+            // Enables drawing
+            myMeasureObject.IsEnabled = true;
+            // Set the drawing to a point
+            myMeasureObject.DrawMode = DrawMode.Point;
+            // Sets the active symbol to the defined red point
+            _activeSymbol = LayoutRoot.Resources["RedPoint"] as Symbol;
+            symbology = "Point";
 
                     
+        }
+
+        private void btnClearGraphics_Click(object sender, RoutedEventArgs e)
+        {
+            graphicsLayer.ClearGraphics();
+            txtBlkMeasurement.Text = "";
+        }
+
+        private void btnPolygon_Click(object sender, RoutedEventArgs e)
+        {
+            txtBlkMeasurement.Text = "";
+            // Enables drawing
+            myMeasureObject.IsEnabled = true;
+            // Set the drawing to a polygon
+            myMeasureObject.DrawMode = DrawMode.Polygon;
+            // Sets the active symbol to a polygon
+            _activeSymbol = LayoutRoot.Resources["BlueFillSymbol"] as FillSymbol;
+            symbology = "Polygon";
+        }
+
+        private void btnLine_Click(object sender, RoutedEventArgs e)
+        {
+            txtBlkMeasurement.Text = "";
+            // Enables drawing
+            myMeasureObject.IsEnabled = true;
+            // Set the drawing to a line
+            myMeasureObject.DrawMode = DrawMode.Polyline;
+            // Set the active symbol to a polyline
+            _activeSymbol = LayoutRoot.Resources["BlueLineSymbol"] as CartographicLineSymbol;
+            symbology = "Polyline";
         }
 
       

@@ -5,8 +5,8 @@
              xmlns:esri="http://schemas.esri.com/arcgis/client/2009" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
              x:Class="hybrid.MainPage"
-             d:DesignHeight="300"
-             d:DesignWidth="400"
+             d:DesignHeight="1024"
+             d:DesignWidth="1280"
              mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot" Background="White">
@@ -15,14 +15,33 @@
             <esri:SimpleFillSymbol x:Key="DefaultFillSymbol" 
                                    Fill="#33FF0000"
                                    BorderBrush="Red"
-                                   BorderThickness="2" />    
+                                   BorderThickness="2" />
+            <esri:SimpleFillSymbol x:Key="RedFillSymbol"
+                                   Fill="#66FF0000"
+                                   BorderBrush="Red"
+                                   BorderThickness="2" />
+            <esri:SimpleFillSymbol x:Key="BlueFillSymbol"
+                                   Fill="#660000FF"
+                                   BorderBrush="Blue"
+                                   BorderThickness="2" />
+            <esri:SimpleMarkerSymbol x:Key="RedPoint"
+                                     Color="Red"
+                                     Style="Circle" />
+            <esri:CartographicLineSymbol x:Key="RedLineSymbol"
+                                         Color="Red"
+                                         Width="4" />
+            <esri:CartographicLineSymbol x:Key="BlueLineSymbol"
+                                         Color="Blue"
+                                         Width="4" />
+                                    
         </Grid.Resources>
         
         <!-- Map Layers Begin -->
         <esri:Map x:Name="myMap" 
                   Extent="778733.96207758,1133387.86320644,849794.792685476,1193607.08672764"
                   IsLogoVisible="False"
-                  ExtentChanged="myMap_ExtentChanged">
+                  ExtentChanged="myMap_ExtentChanged"
+                  WrapAround="True">
             <esri:Map.Layers>
                 <esri:LayerCollection>
                     <esri:ArcGISDynamicMapServiceLayer ID="rasterDataset"
@@ -79,7 +98,7 @@
                     <Button Background="#FF2D84CE"
                             Height="35"
                             Width="88"
-                            x:Name="btnLine">
+                            x:Name="btnLine" Click="btnLine_Click">
                         
                         <StackPanel Orientation="Horizontal">
                             <Image Height="18"
@@ -99,7 +118,7 @@
                     <Button Background="#FF2D84CE"
                             Height="35"
                             Width="88"
-                            x:Name="btnPolygon">
+                            x:Name="btnPolygon" Click="btnPolygon_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Height="18"
                                    x:Name="imgPolygon"
@@ -117,9 +136,27 @@
                                                
                 </StackPanel>
                 <!-- Measure Tools Buttons End -->
-                
+                <StackPanel>
+                    <Button Background="#FF2D84CE"
+                            Height="35"
+                            x:Name="btnClearGraphics"
+                            Width="264" Click="btnClearGraphics_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="18"
+                                   x:Name="imgClearGraphics"
+                                   Stretch="Fill"
+                                   Source="/hybrid;component/Images/i_clear.png" />
+                            <TextBlock Height="15"
+                                       x:Name="txtBlkClearGraphics"
+                                       Text=" Clear Graphics"
+                                       TextAlignment="Center"
+                                       FontFamily="Arial"
+                                       FontSize="10" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
                 <StackPanel Height="30">
-                    <TextBlock Height="15"
+                    <TextBlock Height="30"
                                x:Name="txtBlkMeasurement"
                                TextAlignment="Center"
                                FontFamily="Arial"

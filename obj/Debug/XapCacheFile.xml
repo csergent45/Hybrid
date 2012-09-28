@@ -1,5 +1,5 @@
-﻿<xapCache source="C:\Inetpub\wwwroot\hybrid\Bin\Debug\hybrid.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="9/19/2012 5:00:47 PM">
-  <file source="C:\Inetpub\wwwroot\hybrid\obj\Debug\hybrid.dll" archivePath="hybrid.dll" lastWriteTime="9/19/2012 5:00:46 PM" />
+﻿<xapCache source="C:\Inetpub\wwwroot\hybrid\Bin\Debug\hybrid.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="9/28/2012 4:27:50 PM">
+  <file source="C:\Inetpub\wwwroot\hybrid\obj\Debug\hybrid.dll" archivePath="hybrid.dll" lastWriteTime="9/28/2012 4:27:49 PM" />
   <file source="C:\Program Files\ESRI SDKs\Silverlight5\v3.0\ESRI.ArcGIS.Client.Behaviors.dll" archivePath="ESRI.ArcGIS.Client.Behaviors.dll" lastWriteTime="6/13/2012 7:14:56 AM" />
   <file source="C:\Program Files\ESRI SDKs\Silverlight5\v3.0\ESRI.ArcGIS.Client.dll" archivePath="ESRI.ArcGIS.Client.dll" lastWriteTime="6/13/2012 7:14:56 AM" />
   <file source="C:\Program Files\ESRI SDKs\Silverlight5\v3.0\ESRI.ArcGIS.Client.Printing.dll" archivePath="ESRI.ArcGIS.Client.Printing.dll" lastWriteTime="6/13/2012 7:14:56 AM" />
@@ -22,5 +22,5 @@
   <file source="C:\Program Files\Microsoft SDKs\Silverlight\v4.0\Toolkit\Apr10\Bin\System.Windows.Controls.Toolkit.Internals.dll" archivePath="System.Windows.Controls.Toolkit.Internals.dll" lastWriteTime="4/13/2010 7:59:48 PM" />
   <file source="C:\Program Files\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Controls.Data.Input.dll" archivePath="System.Windows.Controls.Data.Input.dll" lastWriteTime="11/18/2011 4:40:20 PM" />
   <file source="C:\Program Files\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Xml.Serialization.dll" archivePath="System.Xml.Serialization.dll" lastWriteTime="11/18/2011 4:40:20 PM" />
-  <file source="C:\Inetpub\wwwroot\hybrid\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="9/18/2012 2:18:05 PM" />
+  <file source="C:\Inetpub\wwwroot\hybrid\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="9/28/2012 4:08:13 PM" />
 </xapCache>
