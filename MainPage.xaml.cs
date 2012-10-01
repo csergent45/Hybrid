@@ -294,6 +294,7 @@ namespace hybrid
         private void btnCloseTools_Click(object sender, RoutedEventArgs e)
         {
             measureTools.Visibility = Visibility.Collapsed;
+            graphicsLayer.ClearGraphics();
         }
 
         
