@@ -136,6 +136,35 @@
     <Resource Include="Images\w_down.png" />
     <Resource Include="Images\w_left.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\i_about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\group-layer.png" />
+    <Resource Include="Images\i_bookmark.png" />
+    <Resource Include="Images\i_bookmark2.png" />
+    <Resource Include="Images\i_bookmark3.png" />
+    <Resource Include="Images\i_bookmark_add.png" />
+    <Resource Include="Images\i_camera.png" />
+    <Resource Include="Images\i_edit.png" />
+    <Resource Include="Images\i_folder.png" />
+    <Resource Include="Images\i_info.png" />
+    <Resource Include="Images\i_layers.png" />
+    <Resource Include="Images\i_mailbox.png" />
+    <Resource Include="Images\i_piechart.png" />
+    <Resource Include="Images\i_police.png" />
+    <Resource Include="Images\i_resources.png" />
+    <Resource Include="Images\i_rss.png" />
+    <Resource Include="Images\i_scissors.png" />
+    <Resource Include="Images\i_servicearea.png" />
+    <Resource Include="Images\i_table.png" />
+    <Resource Include="Images\i_target.png" />
+    <Resource Include="Images\i_webcam.png" />
+    <Resource Include="Images\layer.png" />
+    <Resource Include="Images\Legend32.png" />
+    <Resource Include="Images\w_close_red.png" />
+    <Resource Include="Images\w_close_red2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

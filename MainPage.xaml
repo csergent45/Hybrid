@@ -188,14 +188,26 @@
                              Map="{Binding ElementName=myMap}" />
         <!-- Map Progress Bar End -->
 
-        <!-- Bookmark Begin -->
-        <esri:Bookmark HorizontalAlignment="Left"
-                       Margin="180,11,0,0"
+        <Border Height="Auto"
+                x:Name="bookMarkBar"
+                Margin="180,11,0,0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Width="120"
+                Visibility="Collapsed">
+            <StackPanel Orientation="Vertical">
+                <Button x:Name="btnHideBookmarks" Click="btnHideBookmarks_Click">
+                    <TextBlock Text="Close Bookmarks" x:Name="txtBlkCloseBookmarks"></TextBlock>
+                </Button>
+                <!-- Bookmark Begin -->
+                <esri:Bookmark HorizontalAlignment="Left"
                        Name="bookmark1"
-                       VerticalAlignment="Top"
                        Width="120"
-                       Map="{Binding ElementName=myMap}" />
-        <!-- Bookmark End -->
+                       Map="{Binding ElementName=myMap}"/>
+                <!-- Bookmark End -->
+            </StackPanel>
+        </Border>
+       
 		
 		<!-- Sidebar Begin -->
         <Border BorderThickness="1" 
@@ -293,7 +305,8 @@
                             
                             <!-- Map Tools Panel Begin -->
         					<toolkit:Expander Height="Auto" Width="180" Header="Map Tools">
-        						<StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
         							<Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnIdentify" Click="btnIdentify_Click">
         								<StackPanel Orientation="Horizontal">
         									<Image Height="18" x:Name="imgIdentify" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_identify.png" />
@@ -307,7 +320,41 @@
         								</StackPanel>
         							</Button>
         						</StackPanel>
-        					</toolkit:Expander>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnBookmark" Click="btnBookmark_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Height="18" x:Name="imgBookmark" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_bookmark2.png" />
+                                            <TextBlock Height="15" x:Name="txtBlkBookmark" Text=" Bookmarks" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnHelp" Click="btnHelp_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Height="15" x:Name="imgHelp" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_help.png" />
+                                            <TextBlock Height="15" x:Name="txtBlkHelp" Text=" Help" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnSearch" Click="btnSearch_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <ToolTipService.ToolTip>
+                                                <ToolTip Content="Search for an Address or PIN">
+                                                    
+                                                </ToolTip>
+                                            </ToolTipService.ToolTip>
+                                            <Image Height="18" x:Name="imgSearch" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_search.png" />
+                                            <TextBlock Height="15" x:Name="txtBlkSearch" Text=" Search" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnPrint" Click="btnPrint_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Height="18" x:Name="imgPrint" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_print.png" />
+                                            <TextBlock Height="15" x:Name="txtBlkPrint" Text=" Print" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </toolkit:Expander>
                             <!-- Map Tools Panel End -->
                             
                             <!-- Overview Map Begin -->

@@ -403,6 +403,31 @@ namespace hybrid
             symbology = "Polyline";
         }
 
+        private void btnBookmark_Click(object sender, RoutedEventArgs e)
+        {
+            bookMarkBar.Visibility = Visibility.Visible;
+        }
+
+        private void btnHelp_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("This will navigate to a help page to help with map usage.");
+        }
+
+        private void btnHideBookmarks_Click(object sender, RoutedEventArgs e)
+        {
+            bookMarkBar.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("This will allow for searching of addresses and maybe even PIN's");
+        }
+
+        private void btnPrint_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("This will allow for printing of the map.");
+        }
+
       
                 
     }
