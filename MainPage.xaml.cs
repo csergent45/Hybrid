@@ -28,6 +28,10 @@ namespace hybrid
         Image _previousExtentImage;
         Image _nextExtentImage;
 
+        // Store most recently return results
+        private List<IdentifyResult> _lastIdentifyResult;
+        private bool activateIdentify;
+
         // Defines the drawing used to draw the zoom box for zoom in and zoom out
         private Draw MyDrawObject;
 
@@ -47,10 +51,15 @@ namespace hybrid
         public MainPage()
         {
             InitializeComponent();
+            
+            activateIdentify = true;
+
             MyDrawObject = new Draw(myMap)
             {
                 FillSymbol = LayoutRoot.Resources["DefaultFillSymbol"] as ESRI.ArcGIS.Client.Symbols.FillSymbol,
                 DrawMode = DrawMode.Rectangle
+
+                 
             };
 
             MyDrawObject.DrawComplete += myDrawObject_DrawComplete;
@@ -278,6 +287,11 @@ namespace hybrid
             btnZoomOut.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
             btnPan.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
             btnMeasure.Background = new SolidColorBrush(Color.FromArgb(255, 45, 132, 206));
+            // Activates Identify
+            activateIdentify = true;
+            // Displays Identify Panel
+            identifyPanel.Visibility = Visibility.Visible;
+            MyDrawObject.IsEnabled = false;
         }
 
         private void btnMeasure_Click(object sender, RoutedEventArgs e)
@@ -428,7 +442,109 @@ namespace hybrid
             MessageBox.Show("This will allow for printing of the map.");
         }
 
-      
-                
+        private void myMap_MouseClick(object sender, Map.MouseEventArgs args)
+        {
+            if (activateIdentify == true)
+            {
+
+                GraphicsLayer graphicsLayer = myMap.Layers["identifyIconGraphicsLayer"] as GraphicsLayer;
+                graphicsLayer.ClearGraphics();
+                ESRI.ArcGIS.Client.Graphic graphic = new ESRI.ArcGIS.Client.Graphic()
+                {
+                    Geometry = args.MapPoint,
+                    Symbol = LayoutRoot.Resources["identifyLocationSymbol"] as ESRI.ArcGIS.Client.Symbols.Symbol
+                };
+                // Add the identify graphic
+                graphicsLayer.Graphics.Add(graphic);
+
+                IdentifyTask identifyTask = new IdentifyTask("http://unibeast/ArcGIS/rest/services/InternetVector/MapServer");
+                identifyTask.ExecuteCompleted += IdentifyTask_ExecuteCompleted;
+                identifyTask.Failed += IdentifyTask_Failed;
+
+                IdentifyParameters identifyParameters = new IdentifyParameters();
+                // Search all layers
+                identifyParameters.LayerOption = LayerOption.all;
+
+                // Initialize extent of map width and height for identify parameters
+                identifyParameters.MapExtent = myMap.Extent;
+                identifyParameters.Width = (int)myMap.ActualWidth;
+                identifyParameters.Height = (int)myMap.ActualHeight;
+
+                // Identify the point clicked on the map
+                identifyParameters.Geometry = args.MapPoint;
+
+                // Execute the identify task
+                identifyTask.ExecuteAsync(identifyParameters);
+            }
+        }
+
+        private void IdentifyTask_ExecuteCompleted(object sender, IdentifyEventArgs args)
+        {
+            // Remove previous results
+            identifyComboBox.Items.Clear();
+
+            // If results are found make the grid visible
+            if (args.IdentifyResults.Count > 0)
+            {
+                identifyResultsStackPanel.Visibility = Visibility.Visible;
+
+                // Display value for each layer in the identify combo box
+                foreach (IdentifyResult result in args.IdentifyResults)
+                {
+                    string title = string.Format("{0} ({1})", result.Value.ToString(), result.LayerName);
+                    identifyComboBox.Items.Add(title);
+                }
+
+                identifyComboBox.UpdateLayout();
+
+                _lastIdentifyResult = args.IdentifyResults;
+
+                identifyComboBox.SelectedIndex = 0;
+            }
+            else
+            {
+                identifyResultsStackPanel.Visibility = Visibility.Collapsed;
+                MessageBox.Show("No features found");
+            }
+        }
+
+        void identifyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GraphicsLayer graphicsLayer = myMap.Layers["resultsGraphicsLayer"] as GraphicsLayer;
+            graphicsLayer.ClearGraphics();
+
+            if (identifyComboBox.SelectedIndex > -1)
+            {
+                Graphic selectedFeature = _lastIdentifyResult[identifyComboBox.SelectedIndex].Feature;
+                identifyDetailDataGrid.ItemsSource = selectedFeature.Attributes;
+
+                selectedFeature.Symbol = LayoutRoot.Resources["selectedFeatureSymbol"] as ESRI.ArcGIS.Client.Symbols.Symbol;
+                graphicsLayer.Graphics.Add(selectedFeature);
+            }
+
+        }
+
+        private void IdentifyTask_Failed(object sender, TaskFailedEventArgs args)
+        {
+            MessageBox.Show("Identify failed: " + args.Error);
+        }
+
+        private void btnHideIdentify_Click(object sender, RoutedEventArgs e)
+        {
+            // Deactivates Identify
+            activateIdentify = false;
+            // Hides Identify Panel
+            identifyPanel.Visibility = Visibility.Collapsed;
+            // Defines graphics layer that draws
+            GraphicsLayer graphicsLayer = myMap.Layers["resultsGraphicsLayer"] as GraphicsLayer;
+            // Defines graphis layer that adds icon
+            GraphicsLayer graphicsLayer2 = myMap.Layers["identifyIconGraphicsLayer"] as GraphicsLayer;
+            // Removes drawn graphics
+            graphicsLayer.ClearGraphics();
+            // Removes identify icon
+            graphicsLayer2.ClearGraphics();
+        }
+
+       
     }
 }

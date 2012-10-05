@@ -3,15 +3,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:esri="http://schemas.esri.com/arcgis/client/2009" 
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+             xmlns:slData="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data"
              x:Class="hybrid.MainPage"
              d:DesignHeight="1024"
              d:DesignWidth="1280"
              mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot" Background="White">
-        <!-- Draws the box for zoom in and zoom out. -->
+        
         <Grid.Resources>
+            <!-- Identify Resources -->
+            <esri:PictureMarkerSymbol x:Key="identifyLocationSymbol"
+                                      OffsetX="35"
+                                      OffsetY="35"
+                                      Source="/hybrid;component/Images/i_about.png" />
+            <esri:SimpleFillSymbol x:Key="selectedFeatureSymbol"
+                                   Fill="#64FF0000"
+                                   BorderBrush="Red"
+                                   BorderThickness="2" />
+            
+            <!-- Draws the box for zoom in and zoom out. -->
             <esri:SimpleFillSymbol x:Key="DefaultFillSymbol" 
                                    Fill="#33FF0000"
                                    BorderBrush="Red"
@@ -41,7 +54,7 @@
                   Extent="778733.96207758,1133387.86320644,849794.792685476,1193607.08672764"
                   IsLogoVisible="False"
                   ExtentChanged="myMap_ExtentChanged"
-                  WrapAround="True">
+                  WrapAround="True" MouseClick="myMap_MouseClick">
             <esri:Map.Layers>
                 <esri:LayerCollection>
                     <esri:ArcGISDynamicMapServiceLayer ID="rasterDataset"
@@ -50,11 +63,60 @@
                     <esri:ArcGISDynamicMapServiceLayer ID="internetVector"
                                             Url="http://unibeast/ArcGIS/rest/services/InternetVector/MapServer"/>
                     <esri:GraphicsLayer ID="myGraphicsLayer" />
+                    <esri:GraphicsLayer ID="identifyIconGraphicsLayer" />
+                    <esri:GraphicsLayer ID="resultsGraphicsLayer" />
                 </esri:LayerCollection>
             </esri:Map.Layers>
         </esri:Map>
         <!-- Map Layers End -->
         
+        
+        <!-- Identify Task Interface -->
+        <StackPanel x:Name="identifyPanel"
+                    Margin="10"
+                    HorizontalAlignment="Left"
+                    Visibility="Collapsed">
+            <Grid>
+                
+                <Rectangle Fill="#CC5C90B2"
+                           Stroke="Gray"
+                           RadiusX="10"
+                           RadiusY="10"/>
+                
+                <TextBlock Text="Click the map to identify a feature"
+                           Foreground="White"
+                           FontSize="10"
+                           Margin="10,5,10,5" />
+                <StackPanel x:Name="identifyResultsStackPanel"
+                            Margin="15,30,15,10"
+                            Visibility="Collapsed">
+                    <Button x:Name="btnHideIdentify"
+                        Content="Close Identify" Click="btnHideIdentify_Click">
+
+                    </Button>
+                    <TextBlock Text="Select a result from the list to display it"
+                               Foreground="White"
+                               FontSize="10"
+                               Margin="0,0,0,5" />
+                    <ComboBox x:Name="identifyComboBox"
+                              SelectionChanged="identifyComboBox_SelectionChanged" />
+                    <ScrollViewer MaxHeight="340"
+                                  Margin="0,10,0,0">
+
+                        <slData:DataGrid x:Name="identifyDetailDataGrid"
+                                  AutoGenerateColumns="False"
+                                  HeadersVisibility="None">
+                            <slData:DataGrid.Columns>
+                                <slData:DataGridTextColumn Binding="{Binding Path=Key}" FontWeight="Bold" />
+                                <slData:DataGridTextColumn Binding="{Binding Path=Value}" />
+                            </slData:DataGrid.Columns>
+
+                        </slData:DataGrid>
+                    </ScrollViewer>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
         <!-- Measure Tools Begin -->
         <Border x:Name="measureTools"
                 VerticalAlignment="Top"
@@ -66,6 +128,11 @@
             <StackPanel Orientation="Vertical">
                 <!-- Close Measure Tools Begin -->
                 <StackPanel>
+                    <ToolTipService.ToolTip>
+                        <ToolTip Content="Hide Measure Tools">
+                            
+                        </ToolTip>
+                    </ToolTipService.ToolTip>
                     <Button x:Name="btnCloseTools" Content="Close Tools" Click="btnCloseTools_Click">
                         
                     </Button>
@@ -81,6 +148,11 @@
                        
 
                         <StackPanel Orientation="Horizontal">
+                            <ToolTipService.ToolTip>
+                                <ToolTip Content="Project a Point">
+                                    
+                                </ToolTip>
+                            </ToolTipService.ToolTip>
                             <Image Height="18"
                                    x:Name="imgPoint"
                                    Stretch="Fill"
@@ -101,6 +173,11 @@
                             x:Name="btnLine" Click="btnLine_Click">
                         
                         <StackPanel Orientation="Horizontal">
+                            <ToolTipService.ToolTip>
+                                <ToolTip Content="Measure a Line">
+                                    
+                                </ToolTip>
+                            </ToolTipService.ToolTip>
                             <Image Height="18"
                                    x:Name="imgLine"
                                    Stretch="Fill"
@@ -120,6 +197,11 @@
                             Width="88"
                             x:Name="btnPolygon" Click="btnPolygon_Click">
                         <StackPanel Orientation="Horizontal">
+                            <ToolTipService.ToolTip>
+                                <ToolTip Content="Measure Polygon">
+                                    
+                                </ToolTip>
+                            </ToolTipService.ToolTip>
                             <Image Height="18"
                                    x:Name="imgPolygon"
                                    Stretch="Fill"
@@ -142,6 +224,11 @@
                             x:Name="btnClearGraphics"
                             Width="264" Click="btnClearGraphics_Click">
                         <StackPanel Orientation="Horizontal">
+                            <ToolTipService.ToolTip>
+                                <ToolTip Content="Clear Graphics">
+                                    
+                                </ToolTip>
+                            </ToolTipService.ToolTip>
                             <Image Height="18"
                                    x:Name="imgClearGraphics"
                                    Stretch="Fill"
@@ -161,8 +248,7 @@
                                TextAlignment="Center"
                                FontFamily="Arial"
                                FontSize="10"
-                               FontWeight="Bold"
-                               Text="Measurement or Coordinates will go here."/>
+                               FontWeight="Bold"/>
                 </StackPanel>
 
                 
@@ -197,6 +283,11 @@
                 Visibility="Collapsed">
             <StackPanel Orientation="Vertical">
                 <Button x:Name="btnHideBookmarks" Click="btnHideBookmarks_Click">
+                    <ToolTipService.ToolTip>
+                        <ToolTip Content="Close Bookmarks">
+                            
+                        </ToolTip>
+                    </ToolTipService.ToolTip>
                     <TextBlock Text="Close Bookmarks" x:Name="txtBlkCloseBookmarks"></TextBlock>
                 </Button>
                 <!-- Bookmark Begin -->
@@ -260,13 +351,23 @@
         									x:Name="btnZoomIn"
         									Click="btnZoomIn_Click">
         									<StackPanel Orientation="Horizontal">
-        										<Image Height="18" x:Name="image1" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomin.png" />
-        										<TextBlock Height="15" x:Name="textBlock1" Text="  Zoom In" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip Content="Zoom In">
+                                                    
+                                                    </ToolTip>
+                                                </ToolTipService.ToolTip>
+                                                <Image Height="18" x:Name="image1" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomin.png" />
+        										<TextBlock Height="15" x:Name="txtBlkZoomIn" Text="  Zoom In" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
         									</StackPanel>
         								</Button>
         								<Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnZoomOut" Click="btnZoomOut_Click">
         									<StackPanel Orientation="Horizontal">
-        										<Image Height="18" x:Name="imgZoomOut" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomout.png" />
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip Content="Zoom Out">
+                                                    
+                                                    </ToolTip>
+                                                </ToolTipService.ToolTip>
+                                                <Image Height="18" x:Name="imgZoomOut" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomout.png" />
         										<TextBlock Height="15" x:Name="txtBlkZoomOut" Text="  Zoom Out" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
         									</StackPanel>
         								</Button>
@@ -274,13 +375,23 @@
         							<StackPanel Orientation="Horizontal">
         								<Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnPrevExtent" IsHitTestVisible="False" Opacity="0.3" Click="btnPrevExtent_Click">
         									<StackPanel Orientation="Horizontal">
-        										<Image Height="18" x:Name="imgPrevExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomprevious.png" />
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip Content="Previous Extent">
+                                                    
+                                                    </ToolTip>
+                                                </ToolTipService.ToolTip>
+                                                <Image Height="18" x:Name="imgPrevExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomprevious.png" />
         										<TextBlock Height="15" x:Name="txtBlkPrevExtent" Text=" Prev Extent" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
         									</StackPanel>
         								</Button>
         								<Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnNextExtent" IsHitTestVisible="False" Opacity="0.3" Click="btnNextExtent_Click">
         									<StackPanel Orientation="Horizontal">
-        										<Image Height="18" x:Name="imgNextExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomnext.png" />
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip Content="Next Extent">
+                                                    
+                                                    </ToolTip>
+                                                </ToolTipService.ToolTip>
+                                                <Image Height="18" x:Name="imgNextExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomnext.png" />
         										<TextBlock Height="15" x:Name="txtBlkNextExtent" Text=" Next Extent" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
         									</StackPanel>
         								</Button>
@@ -288,13 +399,23 @@
         							<StackPanel Orientation="Horizontal">
         								<Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnFullExtent" Click="btnFullExtent_Click">
         									<StackPanel Orientation="Horizontal">
-        										<Image Height="18" x:Name="imgFullExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomfull.png" />
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip Content="Full Extent">
+                                                    
+                                                    </ToolTip>
+                                                </ToolTipService.ToolTip>
+                                                <Image Height="18" x:Name="imgFullExtent" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_zoomfull.png" />
         										<TextBlock Height="15" x:Name="txtBlkFullExtent" Text=" Full Extent" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
         									</StackPanel>
         								</Button>
         								<Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnPan" Click="btnPan_Click">
         									<StackPanel Orientation="Horizontal">
-        										<Image Height="18" x:Name="imgPan" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_pan.png" />
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip Content="Pan">
+                                                    
+                                                    </ToolTip>
+                                                </ToolTipService.ToolTip>
+                                                <Image Height="18" x:Name="imgPan" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_pan.png" />
         										<TextBlock Height="15" x:Name="txtBlkPan" Text="  Pan" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
         									</StackPanel>
         								</Button>
@@ -309,12 +430,22 @@
                                 <StackPanel Orientation="Horizontal">
         							<Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnIdentify" Click="btnIdentify_Click">
         								<StackPanel Orientation="Horizontal">
-        									<Image Height="18" x:Name="imgIdentify" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_identify.png" />
+                                                <ToolTipService.ToolTip>
+                                                    <ToolTip Content="Identify">
+                                                    
+                                                    </ToolTip>
+                                                </ToolTipService.ToolTip>
+                                                <Image Height="18" x:Name="imgIdentify" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_identify.png" />
         									<TextBlock Height="15" x:Name="txtBlkIdentify" Text=" Identify" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
         								</StackPanel>
         							</Button>
         							<Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnMeasure" Click="btnMeasure_Click">
         								<StackPanel Orientation="Horizontal">
+                                            <ToolTipService.ToolTip>
+                                                <ToolTip Content="Open Measuring Tools">
+                                                    
+                                                </ToolTip>
+                                            </ToolTipService.ToolTip>
         									<Image Height="18" x:Name="imgMeasure" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_measure.png" />
         									<TextBlock Height="15" x:Name="txtBlkMeasure" Text=" Measure" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
         								</StackPanel>
@@ -323,12 +454,22 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnBookmark" Click="btnBookmark_Click">
                                         <StackPanel Orientation="Horizontal">
+                                            <ToolTipService.ToolTip>
+                                                <ToolTip Content="Open Existing or Create a New Bookmark">
+                                                    
+                                                </ToolTip>
+                                            </ToolTipService.ToolTip>
                                             <Image Height="18" x:Name="imgBookmark" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_bookmark2.png" />
                                             <TextBlock Height="15" x:Name="txtBlkBookmark" Text=" Bookmarks" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
                                         </StackPanel>
                                     </Button>
                                     <Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnHelp" Click="btnHelp_Click">
                                         <StackPanel Orientation="Horizontal">
+                                            <ToolTipService.ToolTip>
+                                                <ToolTip Content="Get Help with this Map">
+                                                    
+                                                </ToolTip>
+                                            </ToolTipService.ToolTip>
                                             <Image Height="15" x:Name="imgHelp" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_help.png" />
                                             <TextBlock Height="15" x:Name="txtBlkHelp" Text=" Help" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
                                         </StackPanel>
@@ -348,6 +489,11 @@
                                     </Button>
                                     <Button Background="#FF2D84CE" Height="35" Width="88" x:Name="btnPrint" Click="btnPrint_Click">
                                         <StackPanel Orientation="Horizontal">
+                                            <ToolTipService.ToolTip>
+                                                <ToolTip Content="Print Map">
+                                                    
+                                                </ToolTip>
+                                            </ToolTipService.ToolTip>
                                             <Image Height="18" x:Name="imgPrint" Stretch="Fill" Width="18" Source="/hybrid;component/Images/i_print.png" />
                                             <TextBlock Height="15" x:Name="txtBlkPrint" Text=" Print" TextAlignment="Center" FontFamily="Arial" FontSize="10" />
                                         </StackPanel>
